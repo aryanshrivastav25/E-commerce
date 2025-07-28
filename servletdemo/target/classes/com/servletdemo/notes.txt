@@ -1,0 +1,8 @@
+JSP: Jakarta server Pages or Java Server Pages.
+Servlets accepts data from the client and process it.
+JSP is a technology which integrates Java code in between HTML.
+
+Servlets(Controller) get data from client and then send it to JSP(View) in the form of Objects(Model) to display it on frontend.
+This technique is called MVC.
+
+Tomcat Server can only contain Servlet, so any JSP page is automatically converted to JSP.

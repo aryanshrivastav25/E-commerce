@@ -1,0 +1,35 @@
+    <beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--Define the beans to configure/use IoC containers for classes-->
+    <!-- bean definitions here -->
+    <!-- <bean id="alien" class="com.spring2.Alien" scope="prototype"></bean> -->
+    <bean id="alien" class="com.spring2.Alien" autowire="byType"> <!--Autowiring is for Dependecy Injection, it automatically connects the instance variable of Laptop class with its constructor, does autowiring instead of manual setter injection, it searches the beans id for the name of the instance variable, if the instance variable is lap, it will search for the bean having id="lap"-->
+    <!--Instead of using byName, we can byType, it searches for the class matching the type(inherited also), but if there are multiple matching classes it gives an error, to solve this, we can set one of the beans primary attribute primary="true"-->
+
+    <!-- If we don't mention the type or index, then it matches the constructor by sequence and not by type-->
+    <!-- By using index(0, 1, 2), the value constructor-arg with index 0 will go to the 0th parameter of the constructor-->
+    <!-- Using type only works if they are of different type, other wise it again matches the sequence in which the constrcutor-arg tag were declared in correspondence to constructor-->
+    <property name="lap">
+        <bean id="lap" class="com.spring2.Laptop" />
+    </property>
+     <!-- <constructor-arg type="com.spring2.Laptop" ref="lap"></constructor-arg>
+        <constructor-arg type="int" value="21"></constructor-arg> -->
+    <!-- <constructor-arg index="1" ref="lap" />
+    <constructor-arg index="0" value="21" /> -->
+
+    <!-- <constructor-arg name="lap" ref="lap" />
+    <constructor-arg name="age" value="21" /> -->
+       
+        <!-- <property name="age" value="21"></property> --> <!--Calling the setAge(21), this is called setter injection-->
+        <!-- <property name="lap" ref="lap"></property> --> <!--For non-primitive data types, referencing the laptop instance object to the Laptop object bean
+                                                        This is called wiring.-->
+    </bean>
+    <!-- <bean id="lap" class="com.spring2.Laptop" primary="true"></bean> -->
+    <bean id="desk" class="com.spring2.Desktop" lazy-init="true" /> <!--By using lazy-init, the singleton object of Desktop will be created either when we use getBeans("com") or when a non-lazy(eager) class is dependent on lazy class -->
+
+</beans>
+    
+    
